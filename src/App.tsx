@@ -1,39 +1,20 @@
-import React, { useState } from 'react';
-import CheckboxComponent from './component/CheckboxComponent'; // Adjust the path based on your folder structure
+import React from 'react';
+import DropdownComponent, { DropdownOption } from './components/DropdownComponent';
 
 const App: React.FC = () => {
-  // State management for multiple checkboxes
-  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
-  const [subscribeNewsletter, setSubscribeNewsletter] = useState<boolean>(false);
+  const options: DropdownOption[] = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ];
 
-  // Handle changes for the checkboxes
-  const handleAcceptTermsChange = (checked: boolean) => {
-    setAcceptTerms(checked);
-  };
-
-  const handleSubscribeNewsletterChange = (checked: boolean) => {
-    setSubscribeNewsletter(checked);
+  const handleSelect = (value: string) => {
+    console.log('Selected:', value);
   };
 
   return (
     <div>
-      <h1>Generic Checkbox Example</h1>
-
-      {/* Checkbox for accepting terms */}
-      <CheckboxComponent
-        label="Accept Terms and Conditions"
-        checked={acceptTerms}
-        onChange={handleAcceptTermsChange}
-      />
-      <p>{acceptTerms ? "You have accepted the terms." : "You have not accepted the terms."}</p>
-
-      {/* Checkbox for subscribing to a newsletter */}
-      <CheckboxComponent
-        label="Subscribe to Newsletter"
-        checked={subscribeNewsletter}
-        onChange={handleSubscribeNewsletterChange}
-      />
-      <p>{subscribeNewsletter ? "Subscribed to the newsletter." : "Not subscribed to the newsletter."}</p>
+      <h1>Dropdown Example</h1>
+      <DropdownComponent options={options} onSelect={handleSelect} placeholder="Select an option" />
     </div>
   );
 };
